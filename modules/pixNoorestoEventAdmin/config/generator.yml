@@ -1,0 +1,24 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Event
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          event
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+    css:                   nothing.css
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display: [Restaurant, =nom_event, date_event, desc_event]
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~
+

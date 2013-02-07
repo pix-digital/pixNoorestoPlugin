@@ -1,0 +1,23 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           TypeCat
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          type_cat
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+    css:                   nothing.css
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display: [Restaurant, =cat_name]
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

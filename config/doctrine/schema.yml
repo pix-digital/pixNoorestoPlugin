@@ -1,0 +1,327 @@
+
+
+Restaurant:
+  tableName: nooresto_info
+  actAs:
+    Timestampable:
+    Sluggable: { fields: [nom_resto, adress_town], uniqueBy: [id], canUpdate: true }
+
+  columns:
+    nooresto_id: integer
+    url: varchar(255)
+    facebook: varchar(255)
+    
+    nom_resto: varchar(255)
+    nom_appstore: varchar(255)
+    appstore_id: varchar(255)
+    googleplay: varchar(255)
+    desc_resto: varchar(255)
+    adress_street: varchar(255)
+    adress_postal: varchar(255)
+    adress_town: varchar(255)
+    adress_long: varchar(255)
+    adress_lat: varchar(255)
+    is_platdujour: varchar(255)
+    is_suggestions: varchar(255)
+    is_promo: varchar(255)
+    is_formule: varchar(255)
+    data_version: integer
+    tel_resto: varchar(255)
+    tel_resto2: varchar(255)
+    midi_avail: varchar(255)
+    soir_avail: varchar(255)
+    mail_resto: varchar(255)
+    fb_available: varchar(255)
+    fb_app_key: varchar(255)
+    fb_secret_key: varchar(255)
+    data_version_image: integer
+    cuisine: varchar(255)
+    pay: varchar(255)
+    description: clob
+    opening: varchar(255)
+    welcome_message: varchar(255)
+    open_am: varchar(255)
+    close_am: varchar(255)
+    open_pm: varchar(255)
+    close_pm: varchar(255)
+    resa_confirmation_message: varchar(255)
+    order_connected: varchar(255)
+    order_conditions: varchar(255)
+    preorder: varchar(255)
+    preorder_confirmation: varchar(255)
+    takeaway: varchar(255)
+    takeaway_confirmation: varchar(255)
+    delivery: varchar(255)
+    delivery_confirmation: varchar(255)
+
+
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+
+InfosResto:
+  tableName: nooresto_infos_resto
+  actAs:
+    Timestampable:
+
+  columns:
+    restaurant_id: integer
+    
+    nooresto_id: integer
+    type: integer
+    title: varchar(255)
+    content: clob
+    multi_id: varchar(255)
+
+  relations:
+    Restaurant:
+      class: Restaurant
+      local: restaurant_id
+      onDelete: CASCADE
+      foreignAlias: InfosResto
+
+
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+    
+    
+    
+Daily:
+  tableName: nooresto_daily
+  actAs:
+    Timestampable:
+
+  columns:
+    restaurant_id: integer
+    
+    nooresto_id: integer
+    name: varchar(255)
+    description: clob
+    date: date
+    price: varchar(255)
+    dailytype: integer
+    lunchtime: integer
+    is_tva: integer
+    custom: clob
+
+  relations:
+    Restaurant:
+      class: Restaurant
+      local: restaurant_id
+      onDelete: CASCADE
+      foreignAlias: Daily
+
+
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+    
+Carte:
+  tableName: nooresto_carte
+  actAs:
+    Timestampable:
+
+  columns:
+    restaurant_id: integer
+    
+    nooresto_id: integer
+    nom_carte: varchar(255)
+    image: varchar(255)
+    position_carte: integer
+    published: integer
+
+  relations:
+    Restaurant:
+      class: Restaurant
+      local: restaurant_id
+      onDelete: CASCADE
+      foreignAlias: Carte
+
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+
+    
+TypeCat:
+  tableName: nooresto_typecat
+  actAs:
+    Timestampable:
+    Sluggable: { fields: [cat_name], uniqueBy: [restaurant_id, id], canUpdate: true }
+
+  columns:
+    restaurant_id: integer
+
+    nooresto_id: integer
+    cat_name: varchar(255)
+    carte_id: integer
+    position_maincarte: integer
+    image: varchar(255)
+
+  relations:
+    Restaurant:
+      class: Restaurant
+      local: restaurant_id
+      onDelete: CASCADE
+      foreignAlias: TypeCat
+
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+    
+    
+    
+Cat:
+  tableName: nooresto_cat
+  actAs:
+    Timestampable:
+    Sluggable: { fields: [nom_cat], uniqueBy: [restaurant_id, id], canUpdate: true }
+
+  columns:
+    restaurant_id: integer
+
+    nooresto_id: integer
+    nom_cat: varchar(255)
+    type_cat: integer
+    position_cat: integer
+    image: varchar(255)
+
+  relations:
+    Restaurant:
+      class: Restaurant
+      local: restaurant_id
+      onDelete: CASCADE
+      foreignAlias: Cat
+
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+    
+    
+    
+
+    
+    
+Plat:
+  tableName: nooresto_plat
+  actAs:
+    Timestampable:
+    Sluggable: { fields: [nom_plat], uniqueBy: [restaurant_id, id], canUpdate: true }
+
+  columns:
+    restaurant_id: integer
+
+    nooresto_id: integer
+    position_plat: integer
+    nom_plat: varchar(255)
+    prix_plat: varchar(255)
+    desc_plat: clob
+    top_cat_id: integer
+    price_detail: varchar(255)
+    order_mode: integer
+
+  relations:
+    Restaurant:
+      class: Restaurant
+      local: restaurant_id
+      onDelete: CASCADE
+      foreignAlias: Plat
+
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+    
+    
+
+
+Event:
+  tableName: nooresto_event
+  actAs:
+    Timestampable:
+
+  columns:
+    restaurant_id: integer
+
+    nooresto_id: integer
+    nom_event: varchar(255)
+    day_event: varchar(255)
+    desc_event: clob
+    date_event: date
+    date_end_event: date
+    time_deb: time
+    time_fin: time
+    image_name: varchar(255)
+    new_date_start: datetime
+    new_date_end: datetime
+
+  relations:
+    Restaurant:
+      class: Restaurant
+      local: restaurant_id
+      onDelete: CASCADE
+      foreignAlias: Event
+
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+    
+    
+
+ 
+
+Formule:
+  tableName: nooresto_formule
+  actAs:
+    Timestampable:
+
+  columns:
+    restaurant_id: integer
+
+    nooresto_id: integer
+    nom: varchar(255)
+    content: clob
+    prix: varchar(255)
+
+  relations:
+    Restaurant:
+      class: Restaurant
+      local: restaurant_id
+      onDelete: CASCADE
+      foreignAlias: Formule
+
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8  
+ 
+
+Gallery:
+  tableName: nooresto_gallery
+  actAs:
+    Timestampable:
+    Sluggable: { fields: [nom_galerie], uniqueBy: [id], canUpdate: true }
+
+  columns:
+    restaurant_id: integer
+
+    nooresto_id: integer
+    nom_galerie: varchar(255)
+    event_id: integer
+    description_galerie: clob
+    file_galerie: varchar(255)
+    is_home_galerie: integer
+    preview_image: varchar(255)
+    crea_date: varchar(255)
+    
+
+  relations:
+    Restaurant:
+      class: Restaurant
+      local: restaurant_id
+      onDelete: CASCADE
+      foreignAlias: Gallery
+
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8   
+    
+    

@@ -1,0 +1,23 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Formule
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          formule
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+    css:                   nothing.css
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display: [Restaurant, =nom, content, prix]
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

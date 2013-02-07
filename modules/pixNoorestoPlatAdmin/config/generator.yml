@@ -1,0 +1,23 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Plat
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          plat
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+    css:                   nothing.css
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display: [Restaurant, =nom_plat, prix_plat, top_cat_id, desc_plat]
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~
